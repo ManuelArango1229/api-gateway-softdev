@@ -12,14 +12,16 @@ import org.springframework.web.servlet.function.ServerResponse;
 public class Routes {
 
     /**
-     * Configura la ruta para el microservicio de usuarios.
+     * Configura la ruta para el microservicio de usuarios, que se encarga de autenticar.
      *
      * @return una función de enrutamiento para el microservicio de usuarios.
      */
     @Bean
-    public RouterFunction<ServerResponse> userServiceRoute() {
-        return GatewayRouterFunctions.route("user_service")
-            .route(RequestPredicates.path("/api/user"), HandlerFunctions.http("http://localhost:8080"))
+    public RouterFunction<ServerResponse> userAuthServiceRoute() {
+        return GatewayRouterFunctions.route("user_auth_service")
+            .route(RequestPredicates.path("/auth/**"), HandlerFunctions.http("http://localhost:8080"))
             .build();
     }
+
+    //TODO: Configurar rutas para otros microservicios, siguiendo el mismo patrón.
 }
