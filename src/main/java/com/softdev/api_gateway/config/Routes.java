@@ -24,16 +24,28 @@ public class Routes {
     }
 
     /**
+     * Configura la ruta para el microservicio de usuarios, que se encarga de las funciones CRUD de usuarios.
+     *
+     * @return una función de enrutamiento para el microservicio de usuarios.
+     */
+    @Bean
+    public RouterFunction<ServerResponse> userServiceRoute() {
+        return GatewayRouterFunctions.route("user_service")
+                .route(RequestPredicates.path("/usuario/**"), HandlerFunctions.http("http://localhost:8080"))
+                .build();
+    }
+
+    /**
      * Configura la ruta para el microservicio de productos, que se encarga de las funciones CRUD de productos.
      *
      * @return una función de enrutamiento para el microservicio de productos.
      */
     @Bean
-    public RouterFunction<ServerResponse> userServiceRoute() {
+    public RouterFunction<ServerResponse> productoServiceRoute() {
         return GatewayRouterFunctions.route("product_service")
                 .route(RequestPredicates.path("/producto/**"), HandlerFunctions.http("http://localhost:8081"))
                 .build();
     }
 
-    //Por implementar: Configurar rutas para otros microservicios, siguiendo el mismo patrón.
+    
 }
