@@ -23,5 +23,17 @@ public class Routes {
             .build();
     }
 
+    /**
+     * Configura la ruta para el microservicio de productos, que se encarga de las funciones CRUD de productos.
+     *
+     * @return una función de enrutamiento para el microservicio de productos.
+     */
+    @Bean
+    public RouterFunction<ServerResponse> userServiceRoute() {
+        return GatewayRouterFunctions.route("product_service")
+                .route(RequestPredicates.path("/producto/**"), HandlerFunctions.http("http://localhost:8081"))
+                .build();
+    }
+
     //Por implementar: Configurar rutas para otros microservicios, siguiendo el mismo patrón.
 }
