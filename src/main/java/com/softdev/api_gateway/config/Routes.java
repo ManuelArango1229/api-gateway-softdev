@@ -25,6 +25,10 @@ public class Routes {
                 .uri("lb://user-service"))
             .route("product_service", r -> r.path("/producto/**")
                 .uri("lb://product-service"))
+            .route("purchase_order_service", r -> r.path("/ordenes/**")
+                .uri("lb://purchase-order-service"))
+            .route("delivery_routing_service", r -> r.path("/delivery/**")
+                .uri("lb://delivery-routing-service"))
             .build();
     }
 
