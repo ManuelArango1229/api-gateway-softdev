@@ -14,10 +14,10 @@ public class Routes {
     /**
      * Configura las rutas para los microservicios.
      * @param builder
-     * @return
+     * @return RouteLocator
      */
     @Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+    public RouteLocator customRouteLocator(final RouteLocatorBuilder builder) {
         return builder.routes()
             .route("user_service_auth", r -> r.path("/auth/**")
                 .uri("lb://user-service"))
